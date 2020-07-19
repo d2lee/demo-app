@@ -11,12 +11,17 @@ def index():
 def info():
     return render_template('info.html')
 
-@app.route('/meta/<key>')
+@app.route('/meta')
 def meta():
-    url = "http://169.254.169.254/latest/meta-data/" + key
+    url = "http://169.254.169.254/latest/meta-data/"
 
-    ret = urllib.request.urlopen(url).read().decode()
-    return "Metadata %s is %s\n" % (key, ret)
+    metadata_list = urllib.request.urlopen(url).read().decode()
+    str = "Metadata\n"
+    for k in meta_list.split('\n'):
+        url_with_key = url + k
+        v = urllib.request.urlopen(url_with_key).read().decode()
+        str = str + "%s is %s\n" % (k, v)
+    return str
 
 if __name__ == '__main__':
     app.run()

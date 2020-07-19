@@ -29,11 +29,11 @@ ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/example.co
 # Restart nginx to make it effect
 service nginx restart
 
-# Install pip3
-apt -y install python3-pip
+# Install pip3 and gunicorn
+apt -y install python3-pip gunicorn
 
-# Install gunicorn
-pip3 install gunicorn
+# Install flask
+pip3 install flask
 
 # change to home direct
 cd /home/ubuntu
@@ -41,3 +41,6 @@ cd /home/ubuntu
 # git clone to fetch the source
 git clone https://github.com/d2lee/demo-app.git
 
+# run the gunicorn
+cd /home/ubuntu/demo-app
+gunicorn app:app

@@ -15,7 +15,7 @@ def info():
 def meta():
     url = "http://169.254.169.254/latest/meta-data/"
 
-    metadata_list = urllib.request.urlopen(url).read().decode()
+    meta_list = urllib.request.urlopen(url).read().decode()
     str = "Metadata\n"
     for k in meta_list.split('\n'):
         url_with_key = url + k

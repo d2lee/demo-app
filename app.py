@@ -17,3 +17,6 @@ def meta():
 
     ret = urllib.request.urlopen(url).read().decode()
     return "Metadata %s is %s\n" % (key, ret)
+
+if __name__ == '__main__':
+    app.run()

@@ -8,3 +8,6 @@ def index():
 @app.route('/info')
 def info():
     return 'Infomation page\n'
+
+if __name__ == '__main__':
+    app.run()

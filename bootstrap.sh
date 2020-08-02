@@ -1,8 +1,3 @@
-#!/bin/sh
-
-# Upgrade the pre-installed packages
-apt -y update
-
 # Install the nginx
 apt -y install nginx
 
@@ -14,9 +9,12 @@ rm /etc/nginx/sites-enabled/default
 cat << 'EOF' >> /tmp/example.com
 server {
         listen 80;
+        access_log  /var/log/nginx/example.log;
 
         location / {
                 proxy_pass http://127.0.0.1:8000/;
+                proxy_set_header Host $host;
+                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         }
 }
 EOF
@@ -30,17 +28,16 @@ ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/example.co
 service nginx restart
 
 # Install pip3 and gunicorn
-apt -y install python3-pip gunicorn
+apt -y install python3-pip gunicorn3
 
 # Install flask
 pip3 install flask
 
-# change to home direct
+# change to home directory
 cd /home/ubuntu
 
 # git clone to fetch the source
 git clone https://github.com/d2lee/demo-app.git
 
 # run the gunicorn
-cd /home/ubuntu/demo-app
-gunicorn app:app
+cd /home/ubuntu/demo-app && gunicorn3 app:app

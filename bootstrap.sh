@@ -33,11 +33,8 @@ apt -y install python3-pip gunicorn3
 # Install flask
 pip3 install flask
 
-# change to home directory
-cd /home/ubuntu
-
-# git clone to fetch the source
-git clone https://github.com/d2lee/demo-app.git
+# Git clone to fetch the source
+su - ubuntu -c "cd /home/ubuntu && git clone https://github.com/d2lee/demo-app.git"
 
 # run the gunicorn
 cd /home/ubuntu/demo-app && gunicorn3 app:app

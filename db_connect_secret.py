@@ -10,7 +10,7 @@ import json
 
 def get_secret():
 
-    secret_name = "sec"
+    secret_name = "secretCusterMasterUser"
     region_name = "ap-northeast-2"
 
     # Create a Secrets Manager client
@@ -66,13 +66,13 @@ def run_query(host, user, password):
     
     ### MySQL Connection 연결
     conn = pymysql.connect(host=host, user=user, password=password,
-                        db='mylab', charset='utf8')
+                        db='employees', charset='utf8')
     
     # Connection 으로부터 Cursor 생성
     curs = conn.cursor()
     
     # SQL문 실행
-    sql = "select * from sbtest1 limit 2"
+    sql = "select * from employes limit 1"
     curs.execute(sql)
     
     # 데이타 Fetch

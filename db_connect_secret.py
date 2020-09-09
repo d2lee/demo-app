@@ -10,7 +10,7 @@ import json
 
 def get_secret():
 
-    secret_name = "secretCusterMasterUser"
+    secret_name = "secretClusterMasterUser"
     region_name = "ap-northeast-2"
 
     # Create a Secrets Manager client

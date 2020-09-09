@@ -72,7 +72,7 @@ def run_query(host, user, password):
     curs = conn.cursor()
     
     # SQL문 실행
-    sql = "select * from employes limit 1"
+    sql = "select * from employees limit 1"
     curs.execute(sql)
     
     # 데이타 Fetch
